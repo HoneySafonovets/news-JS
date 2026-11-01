@@ -1,5 +1,21 @@
 import { ISourcesContent } from '../view/appView';
 
+type DataProperties = Record<string, string>;
+
+export enum ResponseCode {
+    NotFound = 404,
+    Unauthorized = 401,
+}
+
+export enum HttpMethod {
+    Get = 'GET',
+}
+
+export enum Status {
+    ok = 'ok',
+    error = 'error',
+}
+
 interface ILoader {
     endpoint: string;
     options?: DataProperties;
@@ -10,24 +26,30 @@ export interface ISources {
     sources: ISourcesContent[];
 }
 
+type Callback<T> = (data: T) => void;
+
 class Loader {
-    constructor(baseLink, options) {
+    private baseLink: string;
+
+    private options?: DataProperties;
+
+    constructor(baseLink: string, options: DataProperties) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
-    getResp(
-        { endpoint, options = {} },
-        callback = () => {
+    public getResp<T>(
+        { endpoint, options = {} }: ILoader,
+        callback: Callback<T> = (): void => {
             console.error('No callback for GET response');
         }
-    ) {
-        this.load('GET', endpoint, callback, options);
+    ): void {
+        this.load(HttpMethod.Get, endpoint, callback, options);
     }
 
-    errorHandler(res) {
+    private errorHandler(res: Response) {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === ResponseCode.Unauthorized || res.status === ResponseCode.NotFound)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
@@ -35,18 +57,18 @@ class Loader {
         return res;
     }
 
-    makeUrl(options, endpoint) {
-        const urlOptions = { ...this.options, ...options };
-        let url = `${this.baseLink}${endpoint}?`;
+    private makeUrl(options: DataProperties, endpoint: string) {
+        const urlOptions: DataProperties = { ...this.options, ...options };
+        let url: string = `${this.baseLink}${endpoint}?`;
 
-        Object.keys(urlOptions).forEach((key) => {
+        Object.keys(urlOptions).forEach((key: string) => {
             url += `${key}=${urlOptions[key]}&`;
         });
 
         return url.slice(0, -1);
     }
 
-    load(method, endpoint, callback, options = {}) {
+    private load<T>(method: string, endpoint: string, callback: Callback<T>, options: DataProperties) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
