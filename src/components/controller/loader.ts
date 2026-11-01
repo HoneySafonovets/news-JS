@@ -1,3 +1,13 @@
+interface ILoader {
+    endpoint: string;
+    options?: DataProperties;
+}
+
+export interface ISources {
+    status: Status;
+    sources: ISourcesContent[];
+}
+
 class Loader {
     constructor(baseLink, options) {
         this.baseLink = baseLink;
