@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.js'),
@@ -10,13 +11,26 @@ const baseConfig = {
     module: {
         rules: [
             {
+                test: /\.tsx?$/i,
+                use: 'ts-loader',
+                exclude: /node-modules/,
+            },
+            {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.html$/i,
+                loader: "html-loader",
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             },
         ],
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.ts', '.js', '...'],
     },
     output: {
         filename: 'index.js',
@@ -29,6 +43,9 @@ const baseConfig = {
             filename: 'index.html',
         }),
         new CleanWebpackPlugin(),
+        new ESLintPlugin({
+            extensions: 'ts',
+        }),
     ],
 };
 
