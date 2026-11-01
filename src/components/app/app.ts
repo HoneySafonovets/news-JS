@@ -1,5 +1,6 @@
 import AppController from '../controller/controller';
-import { AppView } from '../view/appView';
+import { AppView, INewsData } from '../view/appView';
+import { ISources } from '../controller/loader';
 
 class App {
     constructor() {

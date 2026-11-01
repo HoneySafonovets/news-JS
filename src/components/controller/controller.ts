@@ -1,4 +1,6 @@
 import AppLoader from './appLoader';
+import { INewsData } from '../view/appView';
+import { ISources } from './loader';
 
 class AppController extends AppLoader {
     getSources(callback) {

@@ -1,5 +1,10 @@
 import './sources.css';
 
+export interface ISource {
+    id: string;
+    name: string;
+}
+
 class Sources {
     draw(data) {
         const fragment = document.createDocumentFragment();

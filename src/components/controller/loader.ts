@@ -1,3 +1,5 @@
+import { ISourcesContent } from '../view/appView';
+
 interface ILoader {
     endpoint: string;
     options?: DataProperties;
