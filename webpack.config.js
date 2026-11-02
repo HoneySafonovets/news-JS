@@ -6,7 +6,7 @@ const DotenvWebpackPlugin = require('dotenv-webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 const baseConfig = {
-    entry: path.resolve(__dirname, './src/index.js'),
+    entry: './src/index',
     mode: 'development',
     module: {
         rules: [
