@@ -17,37 +17,62 @@ export interface IDataNews {
 }
 
 class News {
-    draw(data) {
-        const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+    public draw(data: IDataNews[]): void {
+        const news: IDataNews[] = data.length >= 10 ? data.filter((_item: object, idx: number) => idx < 10) : data;
 
-        const fragment = document.createDocumentFragment();
-        const newsItemTemp = document.querySelector('#newsItemTemp');
+        const fragment: DocumentFragment = document.createDocumentFragment();
+        const newsItemTemp: HTMLTemplateElement | null = document.querySelector('#newsItemTemp');
 
-        news.forEach((item, idx) => {
-            const newsClone = newsItemTemp.content.cloneNode(true);
+        news.forEach((item: IDataNews, idx: number): void => {
+            const newsClone: DocumentFragment | null =
+                newsItemTemp && (newsItemTemp.content.cloneNode(true) as DocumentFragment);
 
-            if (idx % 2) newsClone.querySelector('.news__item').classList.add('alt');
+            if (newsClone) {
+                if (idx % 2) {
+                    newsClone.querySelector('.news__item')?.classList.add('alt');
+                }
 
-            newsClone.querySelector('.news__meta-photo').style.backgroundImage = `url(${
-                item.urlToImage || 'img/news_placeholder.jpg'
-            })`;
-            newsClone.querySelector('.news__meta-author').textContent = item.author || item.source.name;
-            newsClone.querySelector('.news__meta-date').textContent = item.publishedAt
-                .slice(0, 10)
-                .split('-')
-                .reverse()
-                .join('-');
+                const metaPhoto: HTMLElement | null = newsClone.querySelector('.news__meta-photo');
+                const metaAutor: HTMLElement | null = newsClone.querySelector('.news__meta-author');
+                const metaDate: HTMLElement | null = newsClone.querySelector('.news__meta-date');
+                const metaDescriptionTitle: HTMLElement | null = newsClone.querySelector('.news__description-title');
+                const metaDescriptionSource: HTMLElement | null = newsClone.querySelector('.news__description-source');
+                const metaDescriptionContent: HTMLElement | null =
+                    newsClone.querySelector('.news__description-content');
+                const metaMore: HTMLElement | null = newsClone.querySelector('.news__read-more a');
 
-            newsClone.querySelector('.news__description-title').textContent = item.title;
-            newsClone.querySelector('.news__description-source').textContent = item.source.name;
-            newsClone.querySelector('.news__description-content').textContent = item.description;
-            newsClone.querySelector('.news__read-more a').setAttribute('href', item.url);
-
-            fragment.append(newsClone);
+                if (metaPhoto) {
+                    metaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
+                }
+                if (metaAutor) {
+                    metaAutor.textContent = item.author || item.source.name;
+                }
+                if (metaDate) {
+                    metaDate.textContent = item.publishedAt.slice(0, 10).split('-').reverse().join('-');
+                }
+                if (metaDescriptionTitle) {
+                    metaDescriptionTitle.textContent = item.title;
+                }
+                if (metaDescriptionSource) {
+                    metaDescriptionSource.textContent = item.source.name;
+                }
+                if (metaDescriptionContent) {
+                    metaDescriptionContent.textContent = item.description;
+                }
+                if (metaMore) {
+                    metaMore.setAttribute('href', item.url);
+                }
+                fragment.append(newsClone);
+            }
         });
 
-        document.querySelector('.news').innerHTML = '';
-        document.querySelector('.news').appendChild(fragment);
+        const element: HTMLElement | null = document.querySelector('.news');
+        if (element) {
+            element.innerHTML = '';
+        }
+        if (element) {
+            element.appendChild(fragment);
+        }
     }
 }
 
