@@ -8,15 +8,21 @@
 }
 
 .source__item {
-    background: none;
-    border: 2px solid #30c5ff;
-    font: inherit;
-    line-height: 1;
-    margin: 0.5em;
-    padding: 1em 2em;
-    color: #70d6ff;
-    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background-color: #1e1e1e;
+    color: #04438b;
+    border: 1px solid #04438b;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: left;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    word-break: break-word; 
+    min-height: 60px;
 }
 
 .source__item:hover,

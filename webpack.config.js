@@ -42,6 +42,7 @@ const baseConfig = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
+        publicPath: '/news-JS/',
     },
     plugins: [
         new DotenvWebpackPlugin(),
