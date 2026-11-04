@@ -32,7 +32,7 @@ const baseConfig = {
                 type: 'asset/resource',
                 generator: {
                     filename: 'assets/[name].[hash][ext]',
-                }
+                },
             },
         ],
     },
@@ -42,7 +42,7 @@ const baseConfig = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: '/news-JS/',
+        // publicPath: '/news-JS/',
     },
     plugins: [
         new DotenvWebpackPlugin(),

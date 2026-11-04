@@ -7,13 +7,13 @@ body {
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 header {
@@ -82,7 +82,7 @@ footer .copyright:before {
 .footer__item-git-link {
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
 }
 
 .footer__github {
@@ -98,14 +98,13 @@ footer .copyright:before {
     height: 100%;
 }
 
-
 @media screen and (max-width: 600px) {
-  .footer__wrapper {
+    .footer__wrapper {
         display: flex;
         /* flex-direction: column; */
         justify-content: space-between;
         align-items: center;
         gap: 20px;
         margin-bottom: 10px;
-    }  
+    }
 }

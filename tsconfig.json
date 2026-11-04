@@ -1,21 +1,21 @@
 {
-  "compilerOptions": {
-    "rootDir": "./",
-    "outDir": "./out",
-    "skipLibCheck": true,
-    "module": "esnext",
-    "target": "es6",
-    "types": ["node"],
-    
-    "allowSyntheticDefaultImports": true,
+    "compilerOptions": {
+        "rootDir": "./",
+        "outDir": "./out",
+        "skipLibCheck": true,
+        "module": "esnext",
+        "target": "es6",
+        "types": ["node"],
 
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+        "allowSyntheticDefaultImports": true,
 
-    "noImplicitAny": true,
+        "noUncheckedIndexedAccess": true,
+        "exactOptionalPropertyTypes": true,
 
-    // Recommended Options
-    "strict": true,
-  },
-  "exclude": ["node_modules", "**/*.spec.ts"]
+        "noImplicitAny": true,
+
+        // Recommended Options
+        "strict": true
+    },
+    "exclude": ["node_modules", "**/*.spec.ts"]
 }
