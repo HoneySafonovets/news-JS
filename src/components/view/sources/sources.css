@@ -12,11 +12,11 @@
 .source__item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     padding: 16px;
     background-color: #1e1e1e;
-    color: #04438b;
-    border: 1px solid #04438b;
+    color: #4998f1;
+    border: 3px solid #4998f1;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 500;
@@ -33,6 +33,12 @@
     color: #69db7e;
     box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
     transform: translateY(-0.25em);
+}
+
+.source__item-name::before {
+  content: '📰';
+  margin-right: 8px;
+  font-size: 1.2rem;
 }
 
 .source__item-name {

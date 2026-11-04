@@ -42,13 +42,14 @@ const baseConfig = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
-        // publicPath: '/news-JS/',
+        publicPath: '/news-JS/',
     },
     plugins: [
         new DotenvWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
+            favicon: path.resolve(__dirname, 'src/assets/fav.ico'),
         }),
         new CleanWebpackPlugin(),
         new ESLintPlugin({

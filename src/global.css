@@ -17,7 +17,11 @@ img {
 }
 
 header {
-    padding: 10px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0px;
 }
 
 .container {
